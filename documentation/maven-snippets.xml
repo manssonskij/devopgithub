@@ -1,0 +1,74 @@
+<project>
+    <build>...</build>
+    <reporting>...</reporting>
+
+
+    <issueManagement>
+        <system>Bugzilla</system>
+        <url>http://127.0.0.1/abcd/</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>continuum</system>
+        <url>http://127.0.0.1:8080/continuum</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+                <configuration>
+                    <address>continuum@127.0.0.1</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+    <prerequisites>
+        <maven>X.X.X</maven>
+    </prerequisites>
+    <scm>
+        <connection>scm:svn:http://127.0.0.1/svn/devops</connection>
+        <developerConnection>scm:svn:https://127.0.0.1/svn/devops</developerConnection>
+        <tag>HEAD</tag>
+        <url>http://127.0.0.1/websvn/devops</url>
+    </scm>
+
+
+    <distributionManagement>
+
+        <downloadUrl>http://mojo.codehaus.org/my-project</downloadUrl>
+        <status>deployed</status>
+
+        <site>
+            <id>mojo.website</id>
+            <name>Mojo Website</name>
+            <url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url>
+        </site>
+    </distributionManagement>
+    <profiles>
+        <profile>
+            <id>devoptest</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <jdk>1.8</jdk>
+                <os>
+                    <name>Linux</name>
+                    <family>Linux</family>
+                    <arch>x86</arch>
+                    <version>xxx</version>
+                </os>
+                <property>
+                    <name>undefined</name>
+                    <value>undefined</value>
+                </property>
+                <file>
+                    <exists>${basedir}/file2.properties</exists>
+                    <missing>${basedir}/file1.properties</missing>
+                </file>
+            </activation>
+            ...
+        </profile>
+    </profiles>
+
+</project>
